@@ -1,0 +1,22 @@
+{
+  "private": true,
+  "name": "@recruitee/brunch-ng2-less",
+  "version": "1.0.1",
+  "description": "Brunch plugin for compile & inline assets into NG2 project. [dev-only]",
+  "main": "index.js",
+  "keywords": [
+    "brunch",
+    "angular2",
+    "inline",
+    "template",
+    "style",
+    "assets"
+  ],
+  "author": "Jan Zieliński",
+  "license": "ISC",
+  "dependencies": {
+    "autoprefixer": "6.5.4",
+    "less": "^2.7.1",
+    "postcss": "5.2.6"
+  }
+}
