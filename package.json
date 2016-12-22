@@ -2,7 +2,7 @@
   "private": true,
   "name": "@recruitee/brunch-ng2-less",
   "version": "1.0.1",
-  "description": "Brunch plugin for compile & inline assets into NG2 project. [dev-only]",
+  "description": "Brunch plugin for compile less files, it also replaces virtual-dom selectors in build time [dev-only]",
   "main": "index.js",
   "keywords": [
     "brunch",
