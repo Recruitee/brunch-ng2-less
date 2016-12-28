@@ -1,8 +1,8 @@
 {
   "private": true,
   "name": "@recruitee/brunch-ng2-less",
-  "version": "1.0.2",
-  "description": "Brunch plugin for compile less files, it also replaces virtual-dom selectors in build time [dev-only]",
+  "version": "2.0.0",
+  "description": "Brunch plugin for compile less files",
   "main": "index.js",
   "keywords": [
     "brunch",

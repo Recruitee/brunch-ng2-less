@@ -16,37 +16,6 @@ class RecruiteeNg2Less {
     const path = file.path;
 		const filename = file.path.split('/').pop();
 
-
-		if (filename && data) {
-			let cmpHostNameArr = filename.match(/(.*)\.component.less/);
-			let cmpHostName = cmpHostNameArr && cmpHostNameArr.length ? cmpHostNameArr.pop() : false;
-
-			if (!data) {
-				console.log(`Style files seems to be empty: ${path}`);
-			} else {
-
-				if(cmpHostName) {
-					const replacedHost = `rt-${cmpHostName}`;
-					// console.log(`:host --> ${replacedHost} (${path})`);
-
-					// replace :host selector
-					data = data.replace(/:host /gm, replacedHost + ' ');
-
-					// replace :host-context selector
-					data = data.replace(/:host-context\((.*)\)/gm, '$1 ' + replacedHost);
-
-					// remove /deep/ selector
-					data = data.replace(/\/deep\/ /gm, '');
-
-					// replace root-level :not selectors;
-					data = data.replace(/^:not\((.*)\)/gm, `${replacedHost}:not($1)`);
-
-				} else {
-					console.log(`Component host selector could not be extracted from: ${path}`);
-				}
-			}
-		}
-
 		// compile and inline LESS
     const lessConfig = Object.assign({}, this.config, {
       paths: [this.rootPath, sysPath.dirname(path)],
@@ -56,7 +25,11 @@ class RecruiteeNg2Less {
 
 		return this.compileLess(data, lessConfig).then(output => {
 			this._lessDeps = output.imports;
-			return Promise.resolve({ data: output.css });
+
+			const payload = JSON.stringify(output.css);
+			const exports = `module.exports = ${payload}`;
+
+			return Promise.resolve({ exports, path, data: '' });
 		});
 
 		return Promise.resolve(file);
